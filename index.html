@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      text-align: center;
+      padding: 50px;
+    }
+    .center {
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 600px;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    ul {
+      text-align: left;
+      padding-left: 0;
+      list-style-position: inside;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h2 id="subjectTitle"></h2>
+    <ul id="formulaList"></ul>
+    <br>
+    <a href="subject.html" class="button">Go Back</a>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const subject = urlParams.get('subject');
+
+    const formulas = {
+      physics: [
+        "v = u + at",
+        "F = ma",
+        "E = mc²",
+        "P = VI",
+        "λ = h/p"
+      ],
+      chemistry: [
+        "PV = nRT",
+        "ΔG = ΔH - TΔS",
+        "Molarity = moles/volume",
+        "pH = -log[H+]",
+        "Rate = k[A]^x[B]^y"
+      ],
+      mathematics: [
+        "Quadratic Formula: x = (-b ± √(b² - 4ac))/2a",
+        "sin²θ + cos²θ = 1",
+        "Area of circle = πr²",
+        "Derivative of xⁿ = n·xⁿ⁻¹",
+        "Integration of 1/x = ln|x| + C"
+      ]
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+      if (subject && formulas[subject]) {
+        document.getElementById("subjectTitle").textContent =
+          subject.charAt(0).toUpperCase() + subject.slice(1) + " Formulas";
+
+        const list = document.getElementById("formulaList");
+        formulas[subject].forEach(f => {
+          const li = document.createElement("li");
+          li.textContent = f;
+          list.appendChild(li);
+        });
+      } else {
+        document.getElementById("subjectTitle").textContent = "No Subject Selected";
+      }
+    });
+  </script>
+</body>
+</html>
